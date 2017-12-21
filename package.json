@@ -1,11 +1,14 @@
 {
-  "name": "itc-frontend",
+  "name": "itc-orders-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "normalize.css": "^7.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-router": "^4.2.0",
+    "react-scripts": "1.0.17",
+    "styled-components": "^2.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
