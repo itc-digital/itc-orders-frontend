@@ -1,6 +1,25 @@
 {
     "parser": "babel-eslint",
     "extends": "airbnb",
+    "rules": {
+        "indent": ["error", 4],
+        "no-use-before-define": "off",
+        "import/prefer-default-export": "off",
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".json"]
+            }
+        },
+        "react/jsx-indent": ["error", 4],
+        "react/prop-types": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": ["./src"]
+            }
+        }
+    },
     "env": {
         "browser": true,
         "jest": true
