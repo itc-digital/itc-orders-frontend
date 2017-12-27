@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import OAuthButton from 'components/OAuthButton';
-import OAuthCallback from 'containers/OAuthCallback';
+import OAuthCallback from 'components/OAuthCallback';
 
 const routes = [
     {
@@ -14,7 +14,10 @@ const routes = [
     },
 ];
 
-export const makeRoutes = () =>
-    routes.map(({ path, component }) => (
-        <Route exact path={path} component={component} key={path} />
-    ));
+export const makeStaticRoutes = () => (
+    <Switch>
+        {routes.map(({ path, component }, key) => (
+            <Route exact path={path} component={component} key={key} />
+        ))}
+    </Switch>
+);
