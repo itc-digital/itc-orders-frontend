@@ -14,22 +14,22 @@ export const authFetchLogic = createLogic({
     },
     latest: true,
 
-    process({ httpClient, action }, dispatch, done) {
+    process({ api, action }, dispatch, done) {
         const hash = window.location.hash.substr(1);
-        const token = hash.substr(hash.search('=') + 1, hash.search('&'));
-        console.log(push('/'));
+        const token = hash.substring(hash.search('=') + 2, hash.search('&'));
 
-        dispatch(httpClient
-            .getJSON(`http://localhost:3001/auth?access_token=${token}`)
+        dispatch(api
+            .authenticate(token)
             .map((response) => {
-                writeToken(token);
-                return Observable.of(
-                    {
-                        type: '@@router/CALL_HISTORY_METHOD',
-                        payload: { method: 'push', args: ['/'] },
-                    },
-                    authFetchFulfilled({ ...action.payload, ...response, token }),
-                );
+                if (response.success) {
+                    writeToken(token);
+                    return Observable.of(
+                        authFetchFulfilled({ ...action.payload, ...response }),
+                        push('/'),
+                    );
+                }
+
+                return Observable.of(authFetchRejected(response), push('/'));
             })
             .concatAll()
             .catch(err => Observable.of(authFetchRejected(err))));

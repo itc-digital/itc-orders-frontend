@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 
-export const key = 'services/auth';
+export const key = 'api/auth';
 
 export const authFetch = createAction(`${key}/FETCH`);
 export const authFetchCancel = createAction(`${key}/FETCH_CANCEL`);

@@ -11,6 +11,6 @@ const OAuthButtonStyled = styled.a`
     color: #fff;
 `;
 
-const OAuthButton = () => <OAuthButtonStyled href={oAuthUrl}>Войти через ВК</OAuthButtonStyled>;
+const OAuthButton = () => <OAuthButtonStyled href={oAuthUrl}>Вход</OAuthButtonStyled>;
 
 export default OAuthButton;

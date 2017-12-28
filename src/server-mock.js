@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const express = require('express');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
 
@@ -22,11 +23,18 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(session({
+    secret: 'SUPER_SECRET_SECRET',
+    resave: true,
+    saveUninitialized: true,
+}));
+
 apiRouter
     .get('/', (req, res) => {
         res.json({ message: 'API Initialized!' });
     })
-    .get('/auth', auth);
+    .get('/auth', auth)
+    .get('/private', withAuth, privateRoute);
 
 app.use(apiRouter);
 
@@ -40,9 +48,20 @@ function auth(req, res) {
         .then((json) => {
             console.log(JSON.stringify(json));
             if (json.error) {
-                res.json({ success: false, error: json.error.error_msg });
+                res.json({ success: false, ...json.error });
             } else {
                 res.json({ success: true });
             }
         });
+}
+
+function withAuth(req, res, next) {
+    if (req.session && req.session.role === 'USER') {
+        return next();
+    }
+    return res.sendStatus(401);
+}
+
+function privateRoute(req, res) {
+    res.json({ success: true });
 }
