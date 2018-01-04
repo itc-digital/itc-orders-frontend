@@ -1,8 +1,6 @@
 import React from 'react';
-import { makeStaticRoutes } from 'routes';
 import styled from 'styled-components';
-
-import Private from 'components/Private';
+import { makeStaticRoutes } from 'routes';
 
 const Container = styled.div`
     width: 700px;
@@ -11,11 +9,6 @@ const Container = styled.div`
     background: #fddfdf;
 `;
 
-const App = () => (
-    <Container>
-        {makeStaticRoutes()}
-        <Private />
-    </Container>
-);
+const App = () => <Container>{makeStaticRoutes()}</Container>;
 
 export default App;

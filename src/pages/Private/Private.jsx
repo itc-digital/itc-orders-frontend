@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logOut as logOutAction } from 'api/auth/actions';
 import { privateFetch } from './actions';
 import { selectors } from './reducer';
 
@@ -9,8 +11,16 @@ class Private extends React.Component {
     }
 
     render() {
-        const { privateData } = this.props;
-        return <div>{privateData}</div>;
+        const { privateData, logOut } = this.props;
+        return (
+            <div>
+                <h1>Заказы</h1>
+                <Link to="/">Главная</Link>
+                <br />
+                <button onClick={logOut}>Выйти</button>
+                {privateData}
+            </div>
+        );
     }
 }
 
@@ -20,6 +30,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     privateFetch: () => dispatch(privateFetch()),
+    logOut: () => dispatch(logOutAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Private);

@@ -1,16 +1,22 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import OAuthButton from 'components/OAuthButton';
-import OAuthCallback from 'components/OAuthCallback';
+import withAuth from 'utils/withAuth';
+import Main from 'pages/Main';
+import OAuthCallback from 'pages/OAuthCallback';
+import Private from 'pages/Private';
 
 const routes = [
     {
         path: '/',
-        component: OAuthButton,
+        component: Main,
     },
     {
         path: '/oauth_callback',
         component: OAuthCallback,
+    },
+    {
+        path: '/private',
+        component: withAuth(Private),
     },
 ];
 

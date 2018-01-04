@@ -13,7 +13,7 @@ export default handleActions(
     {
         [privateFetchFulfilled]: (state, action) => ({
             ...state,
-            privateData: action.payload,
+            privateData: action.payload.privateData,
         }),
     },
     initialState,

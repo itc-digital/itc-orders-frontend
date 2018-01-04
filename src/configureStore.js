@@ -5,6 +5,7 @@ import { createLogicMiddleware } from 'redux-logic';
 import { routerMiddleware as createRouterMiddleware } from 'react-router-redux';
 
 import api from 'services/api';
+import { getAuthStatus } from 'api/auth/actions';
 import rootReducer from './rootReducer';
 import logic from './rootLogic';
 
@@ -23,5 +24,8 @@ export default function configureStore(browserHistory) {
     const middleware = applyMiddleware(routerMiddleware, logicMiddleware);
 
     const store = createStore(rootReducer, enhanceMiddleware(middleware));
+
+    store.dispatch(getAuthStatus());
+
     return store;
 }

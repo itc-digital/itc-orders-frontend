@@ -1,4 +1,4 @@
 import { logic as authLogic } from 'api/auth';
-import { logic as privateLogic } from 'components/Private';
+import { logic as privateLogic } from 'pages/Private';
 
 export default [...authLogic, ...privateLogic];

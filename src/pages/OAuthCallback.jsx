@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { authFetch } from 'api/auth/actions';
+import { authRequest } from 'api/auth/actions';
 
 class OAuthCallback extends React.Component {
     componentDidMount() {
-        this.props.dispatch(authFetch());
+        const hash = window.location.hash.substr(1);
+        const token = hash.substring(hash.search('=') + 1, hash.search('&'));
+        this.props.dispatch(authRequest({ token }));
     }
 
     render() {

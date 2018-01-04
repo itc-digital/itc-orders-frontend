@@ -2,21 +2,36 @@ import { createLogic } from 'redux-logic';
 import { Observable } from 'rxjs';
 import { push } from 'react-router-redux';
 
-import { writeToken } from 'utils/storage';
+import { maybeReadToken, writeToken, eraseToken } from 'utils/storage';
 
-import { authFetch, authFetchCancel, authFetchFulfilled, authFetchRejected } from './actions';
+import {
+    getAuthStatus,
+    authRequest,
+    authSuccess,
+    authFailure,
+    logOut,
+    authRequired,
+} from './actions';
 
-export const authFetchLogic = createLogic({
-    type: authFetch,
-    cancelType: authFetchCancel,
-    processOptions: {
-        failType: authFetchRejected,
+const getAuthStatusLogic = createLogic({
+    type: getAuthStatus,
+    latest: true,
+
+    process(deps, dispatch, done) {
+        const token = maybeReadToken();
+        if (token) {
+            dispatch(authSuccess({ token }));
+        }
+        done();
     },
+});
+
+const authRequestLogic = createLogic({
+    type: authRequest,
     latest: true,
 
     process({ api, action }, dispatch, done) {
-        const hash = window.location.hash.substr(1);
-        const token = hash.substring(hash.search('=') + 2, hash.search('&'));
+        const { token } = action.payload;
 
         dispatch(api
             .authenticate(token)
@@ -24,17 +39,53 @@ export const authFetchLogic = createLogic({
                 if (response.success) {
                     writeToken(token);
                     return Observable.of(
-                        authFetchFulfilled({ ...action.payload, ...response }),
+                        authSuccess({ ...action.payload, ...response }),
                         push('/'),
                     );
                 }
 
-                return Observable.of(authFetchRejected(response), push('/'));
+                return Observable.of(authFailure(response), push('/'));
             })
             .concatAll()
-            .catch(err => Observable.of(authFetchRejected(err))));
+            .catch(err => Observable.of(authFailure(err))));
         done();
     },
 });
 
-export default [authFetchLogic];
+const authFailureLogic = createLogic({
+    type: authFailure,
+    latest: true,
+
+    process(deps, dispatch, done) {
+        eraseToken();
+        done();
+    },
+});
+
+const authRequiredLogic = createLogic({
+    type: authRequired,
+    latest: true,
+
+    process(deps, dispatch, done) {
+        eraseToken();
+        done();
+    },
+});
+
+const logOutLogic = createLogic({
+    type: logOut,
+    latest: true,
+
+    process(deps, dispatch, done) {
+        eraseToken();
+        done();
+    },
+});
+
+export default [
+    authRequestLogic,
+    authRequiredLogic,
+    authFailureLogic,
+    getAuthStatusLogic,
+    logOutLogic,
+];

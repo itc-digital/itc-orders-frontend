@@ -12,7 +12,7 @@ import registerServiceWorker from './registerServiceWorker';
 import configureStore from './configureStore';
 
 const history = createHistory();
-const store = configureStore(history);
+export const store = configureStore(history);
 
 ReactDOM.render(
     <Provider store={store}>
