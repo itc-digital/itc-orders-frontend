@@ -46,10 +46,11 @@ function auth(req, res) {
     fetch(`https://api.vk.com/method/users.get?v=5.64&access_token=${req.query.access_token}`)
         .then(response => response.json())
         .then((json) => {
-            console.log(JSON.stringify(json));
+            console.log('auth:', JSON.stringify(json));
             if (json.error) {
                 res.json({ success: false, ...json.error });
             } else {
+                req.session.role = 'USER';
                 res.json({ success: true });
             }
         });
@@ -63,5 +64,5 @@ function withAuth(req, res, next) {
 }
 
 function privateRoute(req, res) {
-    res.json({ success: true });
+    res.json({ success: true, privateData: 'SUPER SECRET DATA' });
 }
