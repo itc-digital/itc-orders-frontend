@@ -28,10 +28,10 @@ const callWithAuth = (endpoint, params) =>
             }
         });
 
-export const authenticate = token => call('auth', { access_token: token });
-export const fetchPrivate = () => callWithAuth('private');
+
+const fetchPrivate = () => callWithAuth('private');
 
 export default {
-    authenticate,
+    call,
     fetchPrivate,
 };
