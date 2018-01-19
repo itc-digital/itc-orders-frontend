@@ -1,5 +1,6 @@
 import { createLogic } from 'redux-logic';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { authRequired } from 'api/auth/actions';
 import { apiRequest } from './actions';
 
 export const requestLogic = createLogic({
@@ -19,7 +20,13 @@ export const requestLogic = createLogic({
                 return Observable.of(resultType(new Error(response.error)));
             })
             .concatAll()
-            .catch(err => Observable.of(resultType(err))));
+            .catch((err) => {
+                if (err.status === 401) {
+                    return Observable.of(authRequired(), resultType(err));
+                }
+
+                return Observable.of(resultType(err));
+            }));
         done();
     },
 });
