@@ -1,6 +1,6 @@
 import { createLogic } from 'redux-logic';
 import { Observable } from 'rxjs/Observable';
-import { authRequired } from 'api/auth/actions';
+import { authRequired } from 'services/auth/actions';
 import { apiRequest, apiRequestCancel } from './actions';
 
 export const requestLogic = createLogic({

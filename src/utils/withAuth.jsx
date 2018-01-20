@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { roles } from 'api/auth/constants';
-import { selectors } from 'api/auth/reducer';
+import { roles } from 'services/auth/constants';
+import { selectors } from 'services/auth/reducer';
 import OAuthButton from 'components/OAuthButton';
 
 const withAuth = Component => props =>

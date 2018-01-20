@@ -1,4 +1,4 @@
-import { logic as apiLogic } from 'api';
-import { logic as authLogic } from 'api/auth';
+import { logic as apiLogic } from 'services/api';
+import { logic as authLogic } from 'services/auth';
 
 export default [...apiLogic, ...authLogic];

@@ -4,13 +4,13 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import { createLogicMiddleware } from 'redux-logic';
 import { routerMiddleware as createRouterMiddleware } from 'react-router-redux';
 
-import api from 'services/api';
-import { getAuthStatus } from 'api/auth/actions';
+import { call } from 'services/api/call';
+import { getAuthStatus } from 'services/auth/actions';
 import rootReducer from './rootReducer';
 import logic from './rootLogic';
 
 const deps = {
-    api,
+    api: { call },
 };
 
 const enhanceMiddleware = middleware =>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logOut as logOutAction } from 'api/auth/actions';
-import { apiRequest } from 'api/actions';
+import { logOut as logOutAction } from 'services/auth/actions';
+import { apiRequest } from 'services/api/actions';
 import { privateFetchResult } from './actions';
 import { selectors } from './reducer';
 

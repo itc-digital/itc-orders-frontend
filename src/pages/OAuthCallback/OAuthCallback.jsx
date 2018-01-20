@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { apiRequest } from 'api/actions';
-import { authResult } from 'api/auth/actions';
+import { apiRequest } from 'services/api/actions';
+import { authResult } from 'services/auth/actions';
 
 class OAuthCallback extends React.Component {
     componentDidMount() {

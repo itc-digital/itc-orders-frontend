@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 
-export const key = 'api/auth';
+export const key = 'services/auth';
 
 export const getAuthStatus = createAction(`${key}/GET_AUTH_STATUS`);
 export const authResult = createAction(`${key}/AUTH_RESULT`);
