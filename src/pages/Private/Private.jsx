@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logOut as logOutAction } from 'api/auth/actions';
-import { privateFetch } from './actions';
+import { apiRequest } from 'api/actions';
+import { privateFetchResult } from './actions';
 import { selectors } from './reducer';
 
 class Private extends React.Component {
@@ -29,7 +30,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    privateFetch: () => dispatch(privateFetch()),
+    privateFetch: () =>
+        dispatch(apiRequest({
+            endpoint: 'private',
+            resultType: privateFetchResult,
+        })),
     logOut: () => dispatch(logOutAction()),
 });
 

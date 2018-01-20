@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { key, privateFetchFulfilled } from './actions';
+import { key, privateFetchResult } from './actions';
 
 export const selectors = {
     selectPrivateData: state => state[key].privateData,
@@ -11,7 +11,7 @@ const initialState = {
 
 export default handleActions(
     {
-        [privateFetchFulfilled]: (state, action) => ({
+        [privateFetchResult]: (state, action) => ({
             ...state,
             privateData: action.payload.privateData,
         }),

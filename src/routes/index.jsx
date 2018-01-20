@@ -4,6 +4,7 @@ import withAuth from 'utils/withAuth';
 import Main from 'pages/Main';
 import OAuthCallback from 'pages/OAuthCallback';
 import Private from 'pages/Private';
+import OrderForm from 'pages/OrderForm';
 
 const routes = [
     {
@@ -17,6 +18,10 @@ const routes = [
     {
         path: '/private',
         component: withAuth(Private),
+    },
+    {
+        path: '/order',
+        component: withAuth(OrderForm),
     },
 ];
 

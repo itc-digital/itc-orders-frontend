@@ -1,10 +1,11 @@
 import { createLogic } from 'redux-logic';
 import { Observable } from 'rxjs/Observable';
 import { authRequired } from 'api/auth/actions';
-import { apiRequest } from './actions';
+import { apiRequest, apiRequestCancel } from './actions';
 
 export const requestLogic = createLogic({
     type: apiRequest,
+    cancelType: apiRequestCancel,
     latest: false,
 
     process({ api, action }, dispatch, done) {
@@ -16,15 +17,14 @@ export const requestLogic = createLogic({
                 if (response.success) {
                     return Observable.of(resultType({ ...action.payload, ...response }));
                 }
-                // TODO: показать модалку с ошибкой и предложением повторить запрос
                 return Observable.of(resultType(new Error(response.error)));
             })
-            .concatAll()
             .catch((err) => {
                 if (err.status === 401) {
                     return Observable.of(authRequired(), resultType(err));
                 }
 
+                // TODO: показать модалку с ошибкой и предложением повторить запрос
                 return Observable.of(resultType(err));
             }));
         done();
