@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
+import { ApplyTheme } from 'rambler-ui/theme';
 import createHistory from 'history/createBrowserHistory';
 import 'normalize.css';
 
@@ -17,7 +18,9 @@ export const store = configureStore(history);
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App />
+            <ApplyTheme>
+                <App />
+            </ApplyTheme>
         </ConnectedRouter>
     </Provider>,
     document.getElementById('root'),

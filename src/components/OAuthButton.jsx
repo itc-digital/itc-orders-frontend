@@ -1,16 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import Button from 'rambler-ui/Button';
 import { oAuthUrl } from 'api/vk';
 
-const OAuthButtonStyled = styled.a`
-    display: inline-block;
-    padding: 12px;
-    border-radius: 2px;
-    text-decoration: none;
-    background: #3a24ff;
-    color: #fff;
-`;
-
-const OAuthButton = () => <OAuthButtonStyled href={oAuthUrl}>Вход</OAuthButtonStyled>;
+const OAuthButton = () => <Button href={oAuthUrl}>Вход</Button>;
 
 export default OAuthButton;
