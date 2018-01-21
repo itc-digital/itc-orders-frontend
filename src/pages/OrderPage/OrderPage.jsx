@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import OrderForm from 'components/OrderForm';
 
-class OrderForm extends React.Component {
+class OrderPage extends React.Component {
     render() {
         return (
             <div>
-                <p>Тут будет форма заказа</p>
                 <Link to="/">Главная</Link>
+                <OrderForm />
             </div>
         );
     }
 }
 
-export default connect()(OrderForm);
+export default connect()(OrderPage);

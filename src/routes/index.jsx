@@ -4,7 +4,7 @@ import withAuth from 'utils/withAuth';
 import Main from 'pages/Main';
 import OAuthCallback from 'pages/OAuthCallback';
 import Private from 'pages/Private';
-import OrderForm from 'pages/OrderForm';
+import OrderPage from 'pages/OrderPage';
 
 const routes = [
     {
@@ -21,7 +21,7 @@ const routes = [
     },
     {
         path: '/order',
-        component: withAuth(OrderForm),
+        component: withAuth(OrderPage),
     },
 ];
 

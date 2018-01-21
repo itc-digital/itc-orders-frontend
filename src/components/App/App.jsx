@@ -1,14 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
+import injectSheet from 'react-jss';
 import { makeStaticRoutes } from 'routes';
 
-const Container = styled.div`
-    width: 700px;
-    margin: 0 auto;
-    padding: 30px;
-    background: #fddfdf;
-`;
+const styles = {
+    container: {
+        width: '700px',
+        margin: '0 auto',
+        padding: '20px',
+    },
+};
 
-const App = () => <Container>{makeStaticRoutes()}</Container>;
+const App = ({ classes }) => <div className={classes.container}>{makeStaticRoutes()}</div>;
 
-export default App;
+export default injectSheet(styles)(App);
