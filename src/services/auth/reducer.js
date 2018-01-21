@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { key, authResult, logOut, authRequired } from './actions';
+import { key, authRequired, authResult, logIn, logOut } from './actions';
 import { roles } from './constants';
 
 export const selectors = {
@@ -12,13 +12,17 @@ const initialState = {
 
 export default handleActions(
     {
+        [authRequired]: state => ({
+            ...state,
+            authRole: roles.GUEST,
+        }),
         [authResult]: (state, { payload }) => ({
             ...state,
             authRole: payload.error ? roles.GUEST : roles.USER,
         }),
-        [authRequired]: state => ({
+        [logIn]: state => ({
             ...state,
-            authRole: roles.GUEST,
+            authRole: roles.USER,
         }),
         [logOut]: state => ({
             ...state,

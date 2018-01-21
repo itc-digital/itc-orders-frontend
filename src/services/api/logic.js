@@ -1,5 +1,6 @@
 import { createLogic } from 'redux-logic';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 import { authRequired } from 'services/auth/actions';
 import { apiRequest, apiRequestCancel } from './actions';
 
@@ -15,9 +16,9 @@ export const requestLogic = createLogic({
             .call(endpoint, params)
             .map((response) => {
                 if (response.success) {
-                    return Observable.of(resultType({ ...action.payload, ...response }));
+                    return resultType({ ...params, ...response });
                 }
-                return Observable.of(resultType(new Error(response.error)));
+                return resultType(new Error(response.error));
             })
             .catch((err) => {
                 if (err.status === 401) {

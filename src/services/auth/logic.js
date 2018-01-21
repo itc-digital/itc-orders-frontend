@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 
 import { maybeReadToken, writeToken, eraseToken } from 'utils/storage';
 
-import { getAuthStatus, authResult, logOut, authRequired } from './actions';
+import { getAuthStatus, authRequired, authResult, logIn, logOut } from './actions';
 
 const getAuthStatusLogic = createLogic({
     type: getAuthStatus,
@@ -12,7 +12,7 @@ const getAuthStatusLogic = createLogic({
     process(deps, dispatch, done) {
         const token = maybeReadToken();
         if (token) {
-            dispatch(authResult({ token }));
+            dispatch(logIn());
         }
         done();
     },
@@ -23,13 +23,12 @@ const authResultLogic = createLogic({
 
     process({ action }, dispatch, done) {
         if (action.error) {
-            eraseToken();
-            alert('Всё пошло не так');
+            dispatch(logOut());
         } else {
-            writeToken(action.payload.token);
-            dispatch(push('/'));
-            done();
+            writeToken(action.payload.access_token);
+            window.close();
         }
+        done();
     },
 });
 
@@ -49,6 +48,7 @@ const logOutLogic = createLogic({
 
     process(deps, dispatch, done) {
         eraseToken();
+        dispatch(push('/'));
         done();
     },
 });

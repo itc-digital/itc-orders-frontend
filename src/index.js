@@ -9,6 +9,7 @@ import 'normalize.css';
 
 import './index.css';
 import App from './components/App';
+import './services/auth/storage';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './configureStore';
 

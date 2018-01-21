@@ -1,11 +1,13 @@
+export const vkTokenKey = 'vkToken';
+
 export const maybeReadToken = () => {
-    return localStorage.getItem('vkToken');
+    return localStorage.getItem(vkTokenKey);
 };
 
 export const writeToken = (token) => {
-    localStorage.setItem('vkToken', token);
+    localStorage.setItem(vkTokenKey, token);
 };
 
 export const eraseToken = () => {
-    localStorage.removeItem('vkToken');
+    localStorage.removeItem(vkTokenKey);
 };
