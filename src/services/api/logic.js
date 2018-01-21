@@ -2,6 +2,7 @@ import { createLogic } from 'redux-logic';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { authRequired } from 'services/auth/actions';
+import { openErrorSnackbar } from 'services/snackbar/actions';
 import { apiRequest, apiRequestCancel } from './actions';
 
 export const requestLogic = createLogic({
@@ -26,7 +27,14 @@ export const requestLogic = createLogic({
                 }
 
                 // TODO: показать модалку с ошибкой и предложением повторить запрос
-                return Observable.of(resultType(err));
+                return Observable.of(
+                    openErrorSnackbar({
+                        message: 'Ошибка сетиz',
+                        actionButton: 'Повторить',
+                        action,
+                    }),
+                    resultType(err),
+                );
             }));
         done();
     },
