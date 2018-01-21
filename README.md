@@ -1,6 +1,27 @@
 # ITC Frontend
 Фронтэнд для системы по работе с проектами в ITC
 
+## Как запускать
+Для работы необходима последняя стабильная нода
+```bash
+npm i -g n
+n stable
+```
+В директории репозитория необходимо сделать файл `.env` следующего содержания
+```
+NODE_PATH=src/
+REACT_APP_VK_CLIENT_ID=9999999
+REACT_APP_HOSTNAME=http://localhost:3000
+REACT_APP_API_HOSTNAME=http://localhost:3001
+```
+Потом
+```bash
+npm install
+npm start
+# для запуска API в новом терминале
+node src/server.js
+```
+
 ## TODO:
 - модалка при возникновении ошибки подключения
 - форма с заказом (поиграться с formik)
