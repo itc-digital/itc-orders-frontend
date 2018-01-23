@@ -1,6 +1,7 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 import { makeStaticRoutes } from 'routes';
+import SnackbarPortal from 'services/snackbar';
 
 const styles = {
     container: {
@@ -10,6 +11,11 @@ const styles = {
     },
 };
 
-const App = ({ classes }) => <div className={classes.container}>{makeStaticRoutes()}</div>;
+const App = ({ classes }) => (
+    <div className={classes.container}>
+        {makeStaticRoutes()}
+        <SnackbarPortal />
+    </div>
+);
 
 export default injectSheet(styles)(App);

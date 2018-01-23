@@ -2,6 +2,7 @@ import { createLogic } from 'redux-logic';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { authRequired } from 'services/auth/actions';
+import { openSnackbar } from 'services/snackbar/actions';
 import { apiRequest, apiRequestCancel } from './actions';
 
 export const requestLogic = createLogic({
@@ -26,7 +27,15 @@ export const requestLogic = createLogic({
                 }
 
                 // TODO: показать модалку с ошибкой и предложением повторить запрос
-                return Observable.of(resultType(err));
+                return Observable.of(
+                    openSnackbar({
+                        type: 'danger',
+                        message: 'Сервис недоступен. Проверьте подключение к сети.',
+                        actionButton: 'Повторить',
+                        fsaForAction: action,
+                    }),
+                    resultType(err),
+                );
             }));
         done();
     },
