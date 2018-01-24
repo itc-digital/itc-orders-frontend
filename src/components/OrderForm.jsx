@@ -5,6 +5,7 @@ import Input from 'rambler-ui/Input';
 import Textarea from 'rambler-ui/Textarea';
 import InputStatus from 'rambler-ui/InputStatus';
 import Button from 'rambler-ui/Button';
+import DjangoCSRFToken from 'django-react-csrftoken';
 
 const OrderForm = ({
     values,
@@ -16,6 +17,7 @@ const OrderForm = ({
     isSubmitting,
 }) => (
     <form onSubmit={handleSubmit}>
+        <DjangoCSRFToken />
         <FormGroup label="Название проекта">
             <Input
                 type="text"
