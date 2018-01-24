@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { H1, Text } from 'rambler-ui/Typography';
 
 export default () => (
     <div>
-        <h1>Главная страница</h1>
-        <Link to="/private">Заказы</Link>
-        {' '}
-        <Link to="/order">Форма заявки</Link>
+        <H1>Главная страница</H1>
+        <Text>itc gang itc gang itc gang itc gang</Text>
+        <Text>itc gang itc gang itc gang itc gang</Text>
+        <Text>itc gang itc gang itc gang itc gang</Text>
+        <Text>itc gang itc gang itc gang itc gang</Text>
     </div>
 );
