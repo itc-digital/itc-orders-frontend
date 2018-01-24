@@ -3,6 +3,7 @@ import { withFormik } from 'formik';
 import FormGroup from 'rambler-ui/FormGroup';
 import Input from 'rambler-ui/Input';
 import Textarea from 'rambler-ui/Textarea';
+import InputStatus from 'rambler-ui/InputStatus';
 import Button from 'rambler-ui/Button';
 
 const OrderForm = ({
@@ -18,22 +19,24 @@ const OrderForm = ({
         <FormGroup label="Название проекта">
             <Input
                 type="text"
+                variation="promo"
                 name="title"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.title}
             />
-            {touched.title && errors.title && <div>{errors.title}</div>}
         </FormGroup>
         <FormGroup label="Описание идеи">
-            <Textarea
-                name="description"
-                variation="regular"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.description}
-            />
-            {touched.description && errors.description && <div>{errors.description}</div>}
+            <InputStatus type="error" message={touched.description && errors.description}>
+                <Textarea
+                    name="description"
+                    variation="regular"
+                    status={touched.description && errors.description && 'error'}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.description}
+                />
+            </InputStatus>
         </FormGroup>
         <Button type="primary" buttonType="submit" disabled={isSubmitting}>
             Отправить
