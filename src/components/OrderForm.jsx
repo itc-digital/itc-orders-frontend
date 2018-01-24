@@ -5,7 +5,7 @@ import Input from 'rambler-ui/Input';
 import Textarea from 'rambler-ui/Textarea';
 import InputStatus from 'rambler-ui/InputStatus';
 import Button from 'rambler-ui/Button';
-import DjangoCSRFToken from 'django-react-csrftoken';
+import { getCookieValue } from 'utils/getCookieValue';
 
 const OrderForm = ({
     values,
@@ -17,7 +17,6 @@ const OrderForm = ({
     isSubmitting,
 }) => (
     <form onSubmit={handleSubmit}>
-        <DjangoCSRFToken />
         <FormGroup label="Название проекта">
             <Input
                 type="text"
@@ -50,6 +49,7 @@ const OrderFormik = withFormik({
     mapPropsToValues: ({ title, description }) => ({
         title: title || '',
         description: description || '',
+        csrfmiddlewaretoken: getCookieValue('csrftoken'),
     }),
     validate: ({ description }) => {
         const errors = {};
@@ -58,8 +58,8 @@ const OrderFormik = withFormik({
         }
         return errors;
     },
-    handleSubmit: (values) => {
-        console.log(values);
+    handleSubmit: (values, { props }) => {
+        props.onSubmit(values);
     },
 })(OrderForm);
 

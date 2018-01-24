@@ -11,10 +11,12 @@ export const requestLogic = createLogic({
     latest: false,
 
     process({ api, action }, dispatch, done) {
-        const { endpoint, params, resultType } = action.payload;
+        const {
+            endpoint, params, method, body, resultType,
+        } = action.payload;
 
         dispatch(api
-            .call(endpoint, params)
+            .call(endpoint, params, method, body)
             .map((response) => {
                 if (response.success) {
                     return resultType({ ...params, ...response });
@@ -22,11 +24,20 @@ export const requestLogic = createLogic({
                 return resultType(new Error(response.error));
             })
             .catch((err) => {
-                if (err.status === 401) {
+                if (err.status === 401 || err.status === 403) {
                     return Observable.of(authRequired(), resultType(err));
                 }
 
-                // TODO: показать модалку с ошибкой и предложением повторить запрос
+                if (err.status === 500) {
+                    return Observable.of(
+                        openSnackbar({
+                            type: 'danger',
+                            message: 'Внутренняя ошибка. Мы уже работаем над её исправлением',
+                        }),
+                        resultType(err),
+                    );
+                }
+
                 return Observable.of(
                     openSnackbar({
                         type: 'danger',

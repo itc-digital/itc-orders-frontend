@@ -1,15 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import OrderForm from 'components/OrderForm';
+import { apiRequest } from 'services/api/actions';
+import { orderSubmitResult } from './actions';
 
-class OrderPage extends React.Component {
-    render() {
-        return (
-            <div>
-                <OrderForm />
-            </div>
-        );
-    }
-}
+const OrderPage = ({ onSubmit }) => (
+    <div>
+        <OrderForm onSubmit={onSubmit} />
+    </div>
+);
 
-export default connect()(OrderPage);
+const mapDispatchToProps = {
+    onSubmit: values =>
+        apiRequest({
+            endpoint: 'order',
+            method: 'POST',
+            body: values,
+            resultType: orderSubmitResult,
+        }),
+};
+
+export default connect(undefined, mapDispatchToProps)(OrderPage);
