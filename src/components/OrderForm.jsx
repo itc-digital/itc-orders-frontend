@@ -14,7 +14,7 @@ const OrderForm = ({
     handleChange,
     handleBlur,
     handleSubmit,
-    isSubmitting,
+    isSubmitInProcess,
 }) => (
     <form onSubmit={handleSubmit}>
         <FormGroup label="Название проекта">
@@ -39,7 +39,7 @@ const OrderForm = ({
                 />
             </InputStatus>
         </FormGroup>
-        <Button type="primary" buttonType="submit" disabled={isSubmitting}>
+        <Button type="primary" buttonType="submit" disabled={isSubmitInProcess}>
             Отправить
         </Button>
     </form>

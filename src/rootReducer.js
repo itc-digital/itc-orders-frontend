@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { key as authKey, reducer as authReducer } from 'services/auth';
 import { key as privateKey, reducer as privateReducer } from 'pages/Private';
 import { key as snackbarKey, reducer as snackbarReducer } from 'services/snackbar';
+import { key as orderPageKey, reducer as orderPageReducer } from 'pages/OrderPage';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
@@ -9,4 +10,5 @@ export default combineReducers({
     [authKey]: authReducer,
     [privateKey]: privateReducer,
     [snackbarKey]: snackbarReducer,
+    [orderPageKey]: orderPageReducer,
 });

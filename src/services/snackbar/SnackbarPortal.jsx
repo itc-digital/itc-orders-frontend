@@ -12,6 +12,7 @@ class SnackbarPortal extends React.Component {
         const { dispatch, fsaForAction } = this.props;
         if (fsaForAction) {
             dispatch(fsaForAction);
+            dispatch(closeSnackbar);
         }
     }
 

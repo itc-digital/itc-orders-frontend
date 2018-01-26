@@ -33,6 +33,7 @@ export const requestLogic = createLogic({
                         openSnackbar({
                             type: 'danger',
                             message: 'Внутренняя ошибка. Мы уже работаем над её исправлением',
+                            actionButton: undefined,
                         }),
                         resultType(err),
                     );
