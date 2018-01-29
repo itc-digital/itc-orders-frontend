@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import withAuth from 'utils/withAuth';
 import Main from 'pages/Main';
 import OAuthCallback from 'pages/OAuthCallback';
-import Private from 'pages/Private';
+import Orders from 'pages/Orders';
 import OrderPage from 'pages/OrderPage';
 
 const routes = [
@@ -16,8 +16,8 @@ const routes = [
         component: OAuthCallback,
     },
     {
-        path: '/private',
-        component: withAuth(Private),
+        path: '/orders',
+        component: withAuth(Orders),
     },
     {
         path: '/order',
