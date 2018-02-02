@@ -13,7 +13,7 @@ export default handleActions(
     {
         [ordersFetchResult]: (state, action) => ({
             ...state,
-            orders: action.error ? [] : action.payload,
+            orders: action.error ? [] : action.payload.orders,
         }),
     },
     initialState,

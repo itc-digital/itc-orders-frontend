@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { apiRequest } from 'services/api/actions';
 import { H1, H2 } from 'rambler-ui/Typography';
+import { apiRequest } from 'services/api/actions';
+import OrderCard from 'components/OrderCard';
 import { ordersFetchResult } from './actions';
 import { selectors } from './reducer';
 
@@ -14,9 +15,15 @@ class Orders extends React.Component {
         const { orders } = this.props;
         return (
             <div>
-                <H1>Мои заявки</H1>
+                <H1>Поданные заявки</H1>
                 {orders && orders.length ? (
-                    orders.map(order => <div>{order.title}</div>)
+                    orders.map(order => (
+                        <OrderCard
+                            title={order.title}
+                            description={order.description}
+                            status={order.status}
+                        />
+                    ))
                 ) : (
                     <H2>У вас нет поданных заявок</H2>
                 )}
