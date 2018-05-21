@@ -5,7 +5,8 @@
     "semi": ["error", "never"],
     "import/prefer-default-export": "off",
     "indent": ["error", 2],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "jsx-a11y/label-has-for": "off"
   },
   "settings": {
     "import/resolver": {

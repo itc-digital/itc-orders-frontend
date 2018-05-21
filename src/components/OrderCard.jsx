@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { H2, Text } from 'rambler-ui/Typography'
+import { Header } from 'semantic-ui-react'
 
 const Card = styled.div`
   padding: 20px;
@@ -10,9 +10,9 @@ const Card = styled.div`
 
 const OrderCard = ({ title, description, status }) => (
   <Card>
-    <H2>Идея: {title}</H2>
-    <Text>Описание: {description}</Text>
-    <Text>Статус: {status}</Text>
+    <Header>Идея: {title}</Header>
+    <p>Описание: {description}</p>
+    <p>Статус: {status}</p>
   </Card>
 )
 

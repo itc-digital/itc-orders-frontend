@@ -1,10 +1,6 @@
 import React from 'react'
 import { withFormik } from 'formik'
-import FormGroup from 'rambler-ui/FormGroup'
-import Input from 'rambler-ui/Input'
-import Textarea from 'rambler-ui/Textarea'
-import InputStatus from 'rambler-ui/InputStatus'
-import Button from 'rambler-ui/Button'
+import { Button, Form, Message } from 'semantic-ui-react'
 import { getCookieValue } from 'utils/getCookieValue'
 
 const OrderForm = ({
@@ -16,33 +12,35 @@ const OrderForm = ({
   handleSubmit,
   isSubmitInProcess,
 }) => (
-  <form onSubmit={handleSubmit}>
-    <FormGroup label="Название проекта">
-      <Input
+  <Form onSubmit={handleSubmit}>
+    <Form.Field>
+      <Form.Input
         type="text"
-        variation="promo"
+        label="Название проекта"
         name="title"
         onChange={handleChange}
         onBlur={handleBlur}
         value={values.title}
       />
-    </FormGroup>
-    <FormGroup label="Описание идеи">
-      <InputStatus type="error" message={touched.description && errors.description}>
-        <Textarea
-          name="description"
-          variation="regular"
-          status={touched.description && errors.description && 'error'}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.description}
-        />
-      </InputStatus>
-    </FormGroup>
-    <Button type="primary" buttonType="submit" disabled={isSubmitInProcess}>
+    </Form.Field>
+    <Form.Field>
+      <Form.TextArea
+        name="description"
+        label="Описание идеи"
+        error={!!(touched.description && errors.description)}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.description}
+      />
+      {touched.description &&
+        errors.description && (
+          <Message error header="Ошибка" content={touched.description && errors.description} />
+        )}
+    </Form.Field>
+    <Button type="submit" disabled={isSubmitInProcess}>
       Отправить
     </Button>
-  </form>
+  </Form>
 )
 
 const OrderFormik = withFormik({

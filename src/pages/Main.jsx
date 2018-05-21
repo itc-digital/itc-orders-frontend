@@ -1,12 +1,12 @@
 import React from 'react'
-import { H1, Text } from 'rambler-ui/Typography'
+import { Header } from 'semantic-ui-react'
 
 export default () => (
   <div>
-    <H1>Главная страница</H1>
-    <Text>itc gang itc gang itc gang itc gang</Text>
-    <Text>itc gang itc gang itc gang itc gang</Text>
-    <Text>itc gang itc gang itc gang itc gang</Text>
-    <Text>itc gang itc gang itc gang itc gang</Text>
+    <Header>Главная страница</Header>
+    <p>itc gang itc gang itc gang itc gang</p>
+    <p>itc gang itc gang itc gang itc gang</p>
+    <p>itc gang itc gang itc gang itc gang</p>
+    <p>itc gang itc gang itc gang itc gang</p>
   </div>
 )

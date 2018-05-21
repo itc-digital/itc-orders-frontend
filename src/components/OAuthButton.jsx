@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from 'rambler-ui/Button'
+import { Button } from 'semantic-ui-react'
 import { oAuthUrl } from 'services/api/constants'
 
 const OAuthButton = ({ children }) => (

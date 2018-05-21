@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { H3, Text } from 'rambler-ui/Typography'
+import { Header } from 'semantic-ui-react'
 import OrderForm from 'components/OrderForm'
 import { orderSubmit } from './actions'
 import { selectors } from './reducer'
@@ -11,8 +11,8 @@ const OrderPage = ({ onSubmit, isSubmitted, isSubmitting }) => (
       <OrderForm onSubmit={onSubmit} isSubmitInProcess={isSubmitting} />
     ) : (
       <div>
-        <H3>Заявка отправлена</H3>
-        <Text>Cпасибо! Мы свяжемся в ближайшее время.</Text>
+        <Header>Заявка отправлена</Header>
+        <p>Cпасибо! Мы свяжемся в ближайшее время.</p>
       </div>
     )}
   </div>

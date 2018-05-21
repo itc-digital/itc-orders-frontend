@@ -27,7 +27,6 @@ npm start
 ```
 
 ## TODO:
-- заменить rambler-ui на ant design
 - заменить redux-logic на redux-saga
 - заменить redux-jss на styled-components
 - профиль пользователя
