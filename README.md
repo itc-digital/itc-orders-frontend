@@ -23,5 +23,8 @@ npm start
 ```
 
 ## TODO:
+- заменить rambler-ui на ant design
+- заменить redux-logic на redux-saga
+- заменить redux-jss на styled-components
 - профиль пользователя
 - админка с возможностью смотреть список проектов и редактировать их через форму (переиспользовать OrderForm)
