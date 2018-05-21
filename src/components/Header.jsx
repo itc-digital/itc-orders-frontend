@@ -1,15 +1,6 @@
 import React from 'react'
 import { withRouter, NavLink } from 'react-router-dom'
-
-const styles = {
-  header: {
-    marginBottom: '24px',
-  },
-
-  navItem: {
-    textDecoration: 'none',
-  },
-}
+import { Menu } from 'semantic-ui-react'
 
 const navigation = [
   {
@@ -23,11 +14,15 @@ const navigation = [
 ]
 
 const Header = ({ location }) => (
-  <div style={styles.header} value={location.pathname}>
+  <Menu pointing secondary>
     {navigation.map(({ title, path }) => (
-      <NavLink to={path} key={title} exact>{title}</NavLink>
+      <Menu.Item as="div" active={path === location.pathname} key={title}>
+        <NavLink to={path} exact>
+          {title}
+        </NavLink>
+      </Menu.Item>
     ))}
-  </div>
+  </Menu>
 )
 
 export default withRouter(Header)

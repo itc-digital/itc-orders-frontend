@@ -32,11 +32,11 @@ const OrderForm = ({
         onBlur={handleBlur}
         value={values.description}
       />
-      {touched.description &&
-        errors.description && (
-          <Message error header="Ошибка" content={touched.description && errors.description} />
-        )}
     </Form.Field>
+    {touched.description &&
+      errors.description && (
+        <Message negative content={touched.description && errors.description} />
+      )}
     <Button type="submit" disabled={isSubmitInProcess}>
       Отправить
     </Button>
