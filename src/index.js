@@ -2,8 +2,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { syncHistoryWithStore } from 'react-router-redux'
-import { Router } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 import { injectGlobal } from 'styled-components'
 import 'semantic-ui-css/semantic.min.css'
@@ -25,13 +24,12 @@ injectGlobal`
 
 const browserHistory = createHistory()
 export const store = configureStore(browserHistory)
-const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
+    <ConnectedRouter history={browserHistory}>
       <App />
-    </Router>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root'),
 )

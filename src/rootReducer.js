@@ -6,7 +6,7 @@ import { key as orderPageKey, reducer as orderPageReducer } from 'pages/OrderPag
 import { routerReducer } from 'react-router-redux'
 
 export default combineReducers({
-  routing: routerReducer,
+  router: routerReducer,
   [authKey]: authReducer,
   [ordersKey]: ordersReducer,
   [snackbarKey]: snackbarReducer,
