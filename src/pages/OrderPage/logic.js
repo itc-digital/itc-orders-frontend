@@ -1,21 +1,21 @@
-import { createLogic } from 'redux-logic';
-import { apiRequest } from 'services/api/actions';
-import { orderSubmit, orderSubmitResult } from './actions';
+import { createLogic } from 'redux-logic'
+import { apiRequest } from 'services/api/actions'
+import { orderSubmit, orderSubmitResult } from './actions'
 
 const submitLogic = createLogic({
-    type: orderSubmit,
-    latest: true,
+  type: orderSubmit,
+  latest: true,
 
-    process({ action }, dispatch, done) {
-        dispatch(apiRequest({
-            endpoint: 'order',
-            method: 'POST',
-            body: action.payload,
-            resultType: orderSubmitResult,
-        }));
+  process({ action }, dispatch, done) {
+    dispatch(apiRequest({
+      endpoint: 'order',
+      method: 'POST',
+      body: action.payload,
+      resultType: orderSubmitResult,
+    }))
 
-        done();
-    },
-});
+    done()
+  },
+})
 
-export default [submitLogic];
+export default [submitLogic]

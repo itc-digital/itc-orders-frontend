@@ -1,23 +1,19 @@
-import React from 'react';
-import injectSheet from 'react-jss';
-import { H2, Text } from 'rambler-ui/Typography';
+import React from 'react'
+import styled from 'styled-components'
+import { H2, Text } from 'rambler-ui/Typography'
 
-const styles = {
-    card: {
-        padding: '20px',
-        border: '1px solid black',
-        marginBottom: '10px',
-    },
-};
+const Card = styled.div`
+  padding: 20px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+`
 
-const OrderCard = ({
-    classes, title, description, status,
-}) => (
-    <div className={classes.card}>
-        <H2>Идея: {title}</H2>
-        <Text>Описание: {description}</Text>
-        <Text>Статус: {status}</Text>
-    </div>
-);
+const OrderCard = ({ title, description, status }) => (
+  <Card>
+    <H2>Идея: {title}</H2>
+    <Text>Описание: {description}</Text>
+    <Text>Статус: {status}</Text>
+  </Card>
+)
 
-export default injectSheet(styles)(OrderCard);
+export default OrderCard

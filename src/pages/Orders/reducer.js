@@ -1,20 +1,20 @@
-import { handleActions } from 'redux-actions';
-import { key, ordersFetchResult } from './actions';
+import { handleActions } from 'redux-actions'
+import { key, ordersFetchResult } from './actions'
 
 export const selectors = {
-    selectOrders: state => state[key].orders,
-};
+  selectOrders: state => state[key].orders,
+}
 
 const initialState = {
-    orders: [],
-};
+  orders: [],
+}
 
 export default handleActions(
-    {
-        [ordersFetchResult]: (state, action) => ({
-            ...state,
-            orders: action.error ? [] : action.payload.orders,
-        }),
-    },
-    initialState,
-);
+  {
+    [ordersFetchResult]: (state, action) => ({
+      ...state,
+      orders: action.error ? [] : action.payload.orders,
+    }),
+  },
+  initialState,
+)

@@ -1,10 +1,10 @@
-import { pickBy, toPairs, pipe, map, join } from 'lodash/fp';
+import { pickBy, toPairs, pipe, map, join } from 'lodash/fp'
 
-const pickNotUndefined = pickBy(val => val !== undefined);
+const pickNotUndefined = pickBy(val => val !== undefined)
 
 export const objectToQueryString = pipe(
-    pickNotUndefined,
-    toPairs,
-    map(pipe(map(encodeURIComponent), join('='))),
-    join('&'),
-);
+  pickNotUndefined,
+  toPairs,
+  map(pipe(map(encodeURIComponent), join('='))),
+  join('&'),
+)

@@ -1,4 +1,4 @@
 export const roles = {
-    GUEST: 'GUEST',
-    USER: 'USER',
-};
+  GUEST: 'GUEST',
+  USER: 'USER',
+}

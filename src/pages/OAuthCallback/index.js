@@ -1,1 +1,1 @@
-export { default } from './OAuthCallback';
+export { default } from './OAuthCallback'

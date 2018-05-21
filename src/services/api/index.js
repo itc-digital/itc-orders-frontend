@@ -1,1 +1,1 @@
-export { default as logic } from './logic';
+export { default as logic } from './logic'
