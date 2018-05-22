@@ -7,6 +7,7 @@ import createHistory from 'history/createBrowserHistory'
 import { injectGlobal } from 'styled-components'
 import 'semantic-ui-css/semantic.min.css'
 import 'normalize.css'
+import 'mimic'
 
 import App from './components/App'
 import './services/auth/storage'
